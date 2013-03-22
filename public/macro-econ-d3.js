@@ -44,21 +44,30 @@ var line2 = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y1(d.unemployment); });
 
+var line3 = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y1(d.gdpavg); });
+
 var svg = d3.select(".chart-area").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json('http://localhost:5000/taxdata', function (error, data) {
+d3.json('http://sleepy-escarpment-3990.herokuapp.com/taxdata', function (error, data) {
 	console.log(error);
 
 	//parses integers and modifies each data element
+	var derp = 0;
+	var counter = 0;
 	data.taxes.forEach(function(d) {
 		d.date = parseInt(d.date, 10);
 		d.taxrate = parseInt(d.taxrate, 10);
 		d.gdprate = parseFloat(d.gdprate).toFixed(2);
 		d.unemployment = parseFloat(d.unemployment).toFixed(2);
+		derp = parseFloat(derp) + parseFloat(d.gdprate);
+		counter++;
+		d.gdpavg = derp/counter;
 	});
 
 	console.log(data);
