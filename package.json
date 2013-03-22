@@ -4,14 +4,14 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "2.5.8",
-    "jquery": "1.7.2",
+    "jquery": "1.7.2"
   },
   "engines": {
     "node": "0.8.19",
     "npm": "1.2.10"
   },
   "keywords": [
-    "node.js",
+    "node.js"
   ],
   "contributors": [
     {
