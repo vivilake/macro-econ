@@ -1,0 +1,38 @@
+.controls {
+	height: 50px;
+	width: 100px;
+}
+
+.unemployment-button {
+	background-color: red;
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+.gdp-button {
+	background-color: green;
+	height: 50px;
+	width: 50px;
+	float: right;
+}
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}

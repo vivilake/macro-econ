@@ -44,13 +44,13 @@ var line2 = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y1(d.unemployment); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".chart-area").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json('http://sleepy-escarpment-3990.herokuapp.com/taxdata', function (error, data) {
+d3.json('http://localhost:5000/taxdata', function (error, data) {
 	console.log(error);
 
 	//parses integers and modifies each data element
@@ -73,27 +73,33 @@ svg.append("path")
 	.attr("class", "line")
 	.attr("stroke", "blue")
 	.attr("d", line0);
+
+svg.append("path")
+	.datum(data.taxes)
+	.attr("class", "line lineb")
+	.attr("stroke", "green")
+	.attr("d", line1);
 /*
 svg.append("path")
 	.datum(data.taxes)
 	.attr("class", "line")
-	.attr("stroke", "green")
-	.attr("d", line1);
-
-svg.append("path")
-	.datum(data.taxes)
-	.attr("class", "line")
 	.attr("stroke", "red")
-	.attr("d", line2);*/
-$(document).keypress(function (e) {
-	var code = (e.keyCode ? e.keyCode : e.which);
-	if(code == 13) {
-		svg.append("path")
-			.datum(data.taxes)
-			.attr("class", "line")
-			.attr("stroke", "green")
-			.attr("d", line1);
-		}
+	.attr("d", line2);
+	*/
+$('.unemployment-button').click(function (e) {
+	svg.selectAll(".lineb")
+		.transition()
+		.duration(750)
+		.attr("stroke", "red")
+		.attr("d", line2);
+});
+
+$('.gdp-button').click(function (e) {
+	svg.selectAll(".lineb")
+		.transition()
+		.duration(750)
+		.attr("stroke", "green")
+		.attr("d", line1);
 });
 
 svg.append("g")
