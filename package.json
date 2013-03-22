@@ -1,0 +1,29 @@
+{
+  "name": "macro-econ",
+  "description": "economic visualizations",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "2.5.8",
+    "jquery": "1.7.2",
+  },
+  "engines": {
+    "node": "0.8.19",
+    "npm": "1.2.10"
+  },
+  "keywords": [
+    "node.js",
+  ],
+  "contributors": [
+    {
+      "name": "Jon Su",
+      "email": "jon.w.su@gmail.com",
+      "web": ""
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:jonsu/macro-econ.git"
+    }
+  ]
+}

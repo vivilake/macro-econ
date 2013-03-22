@@ -13,8 +13,16 @@ var allowCrossDomain = function(req, res, next) {
 app.use(express.methodOverride());
 app.use(allowCrossDomain);
 
-app.get('/', function (req, res) {
+app.use(express.static(__dirname + '/public'));
+
+app.get('/taxdata', function (req, res) {
   res.sendfile(__dirname + '/taxdata.json');
 });
 
-server.listen(8080);
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
+
+var port = process.env.PORT || 5000;
+
+server.listen(port);
