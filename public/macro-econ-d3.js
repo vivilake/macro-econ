@@ -13,8 +13,8 @@ var y0 = d3.scale.linear()
 var y1 = d3.scale.linear()
 	.range([height, 0]);
 
-var y2 = d3.scale.linear()
-	.range([height, 0]);
+/*var y2 = d3.scale.linear()
+	.range([height, 0]);*/
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -75,7 +75,6 @@ d3.json('http://sleepy-escarpment-3990.herokuapp.com/taxdata', function (error, 
 x.domain([d3.min(data.taxes, function(d) { return d.date; }), d3.max(data.taxes, function(d) { return d.date; })]);
 y0.domain([0, 100]);
 y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
-y2.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
 
 svg.append("path")
 	.datum(data.taxes)
@@ -96,17 +95,23 @@ svg.append("path")
 	.attr("d", line2);
 	*/
 $('.unemployment-button').click(function (e) {
+	y1.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
+	$(".yaxis").hide();
+	$(".unemployment-axis").show();
 	svg.selectAll(".lineb")
 		.transition()
-		.duration(750)
+		.duration(1000)
 		.attr("stroke", "red")
 		.attr("d", line2);
 });
 
 $('.gdp-button').click(function (e) {
+	y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
+	$(".yaxis").hide();
+	$(".gdp-axis").show();
 	svg.selectAll(".lineb")
 		.transition()
-		.duration(750)
+		.duration(1000)
 		.attr("stroke", "green")
 		.attr("d", line1);
 });
@@ -127,11 +132,12 @@ svg.append("g")
 	.text("Highest Bracket Tax Rate (%)");
 
 svg.append("g")
-	.attr("class", "y axis")
+	.attr("class", "axis yaxis gdp-axis")
 	.attr("transform", "translate(" + width + " ,0)")
 	.style("fill", "green")
 	.call(yAxisRight)
 .append("text")
+	.attr("class", "gdp-label")
 	.attr("transform", "rotate(-90)")
 	.attr("transform", "translate(" + -10 + " ,0)")
 	.attr("y", 6)
@@ -140,11 +146,12 @@ svg.append("g")
 	.text("GDP Growth Rate (%)");
 
 svg.append("g")
-	.attr("class", "y axis")
+	.attr("class", "axis yaxis unemployment-axis")
 	.attr("transform", "translate(" + width + " ,0)")
 	.style("fill", "red")
 	.call(yAxisRight2)
 .append("text")
+	.attr("class", "unemployment-label")
 	.attr("transform", "rotate(-90)")
 	.attr("transform", "translate(" + -10 + " ,0)")
 	.attr("y", 6)
