@@ -13,8 +13,8 @@ var y0 = d3.scale.linear()
 var y1 = d3.scale.linear()
 	.range([height, 0]);
 
-/*var y2 = d3.scale.linear()
-	.range([height, 0]);*/
+var y2 = d3.scale.linear()
+	.range([height, 0]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -29,7 +29,7 @@ var yAxisRight = d3.svg.axis()
     .orient("right");
 
 var yAxisRight2 = d3.svg.axis()
-	.scale(y1)
+	.scale(y2)
     .orient("right");
 
 var line0 = d3.svg.line()
@@ -42,7 +42,7 @@ var line1 = d3.svg.line()
 
 var line2 = d3.svg.line()
     .x(function(d) { return x(d.date); })
-    .y(function(d) { return y1(d.unemployment); });
+    .y(function(d) { return y2(d.unemployment); });
 
 var line3 = d3.svg.line()
     .x(function(d) { return x(d.date); })
@@ -75,6 +75,7 @@ d3.json('http://sleepy-escarpment-3990.herokuapp.com/taxdata', function (error, 
 x.domain([d3.min(data.taxes, function(d) { return d.date; }), d3.max(data.taxes, function(d) { return d.date; })]);
 y0.domain([0, 100]);
 y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
+y2.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
 
 svg.append("path")
 	.datum(data.taxes)
@@ -95,7 +96,7 @@ svg.append("path")
 	.attr("d", line2);
 	*/
 $('.unemployment-button').click(function (e) {
-	y1.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
+	//y1.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
 	$(".yaxis").hide();
 	$(".unemployment-axis").show();
 	svg.selectAll(".lineb")
@@ -106,7 +107,7 @@ $('.unemployment-button').click(function (e) {
 });
 
 $('.gdp-button').click(function (e) {
-	y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
+	//y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
 	$(".yaxis").hide();
 	$(".gdp-axis").show();
 	svg.selectAll(".lineb")
@@ -158,7 +159,8 @@ svg.append("g")
 	.attr("dy", ".71em")
 	.style("text-anchor", "end")
 	.text("Unemployment Rate (%)");
-});
 
+	$(".unemployment-axis").css("display", "none");
+});
 
 });
