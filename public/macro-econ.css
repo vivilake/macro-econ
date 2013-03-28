@@ -1,20 +1,52 @@
+.title {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.author {
+	font-size: 10px;
+	margin-left: 890px;
+}
+
 .controls {
 	height: 50px;
-	width: 100px;
+	width: 300px;
 }
 
 .unemployment-button {
 	background-color: red;
 	height: 50px;
-	width: 50px;
+	width: 125px;
 	float: left;
+	border-radius: 15px;
 }
 
 .gdp-button {
 	background-color: green;
 	height: 50px;
-	width: 50px;
+	width: 125px;
 	float: right;
+	border-radius: 15px;
+}
+
+.gdp-button p {
+	margin: 0;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+	font-size: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+.unemployment-button p {
+	margin: 0;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+	font-size: 10px;
+	color: white;
+	font-weight: bold;
 }
 
 body {
@@ -35,4 +67,12 @@ body {
 .line {
   fill: none;
   stroke-width: 1.5px;
+}
+
+.citations {
+	margin-top: 50px;
+}
+
+.citations p {
+	margin: 0;
 }

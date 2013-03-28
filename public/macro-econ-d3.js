@@ -18,6 +18,7 @@ var y2 = d3.scale.linear()
 
 var xAxis = d3.svg.axis()
     .scale(x)
+    .tickFormat(d3.format(".0f"))
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
@@ -70,8 +71,6 @@ d3.json('http://sleepy-escarpment-3990.herokuapp.com/taxdata', function (error, 
 		d.gdpavg = derp/counter;
 	});
 
-	console.log(data);
-
 x.domain([d3.min(data.taxes, function(d) { return d.date; }), d3.max(data.taxes, function(d) { return d.date; })]);
 y0.domain([0, 100]);
 y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
@@ -88,15 +87,8 @@ svg.append("path")
 	.attr("class", "line lineb")
 	.attr("stroke", "green")
 	.attr("d", line1);
-/*
-svg.append("path")
-	.datum(data.taxes)
-	.attr("class", "line")
-	.attr("stroke", "red")
-	.attr("d", line2);
-	*/
+
 $('.unemployment-button').click(function (e) {
-	//y1.domain([d3.min(data.taxes, function(d) { return d.unemployment; })-3, d3.max(data.taxes, function(d) { return d.unemployment; })*2]);
 	$(".yaxis").hide();
 	$(".unemployment-axis").show();
 	svg.selectAll(".lineb")
@@ -107,7 +99,6 @@ $('.unemployment-button').click(function (e) {
 });
 
 $('.gdp-button').click(function (e) {
-	//y1.domain([d3.min(data.taxes, function(d) { return d.gdprate; })-3, d3.max(data.taxes, function(d) { return d.gdprate; })*2]);
 	$(".yaxis").hide();
 	$(".gdp-axis").show();
 	svg.selectAll(".lineb")
@@ -125,8 +116,10 @@ svg.append("g")
 svg.append("g")
 	.attr("class", "y axis")
 	.call(yAxis)
+	.style("fill", "blue")
 .append("text")
-	.attr("transform", "rotate(-90)")
+	.attr("transform", "rotate(0)")
+	.attr("transform", "translate(" + 145 + " ,0)")
 	.attr("y", 6)
 	.attr("dy", ".71em")
 	.style("text-anchor", "end")
