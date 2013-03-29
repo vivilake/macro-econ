@@ -1,21 +1,26 @@
+body {
+	background-image: url('white_wall_hash.png');
+}
+
+.content {
+	width: 960px;
+	margin: auto;
+}
+
 .title {
 	font-size: 32px;
 	font-weight: bold;
 }
 
-.author {
-	font-size: 10px;
-	margin-left: 890px;
-}
-
 .controls {
 	height: 50px;
-	width: 300px;
+	width: 275px;
+	padding-top: 20px;
 }
 
 .unemployment-button {
 	background-color: red;
-	height: 50px;
+	height: 30px;
 	width: 125px;
 	float: left;
 	border-radius: 15px;
@@ -23,7 +28,7 @@
 
 .gdp-button {
 	background-color: green;
-	height: 50px;
+	height: 30px;
 	width: 125px;
 	float: right;
 	border-radius: 15px;
@@ -33,7 +38,7 @@
 	margin: 0;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 50px;
+	line-height: 30px;
 	font-size: 10px;
 	color: white;
 	font-weight: bold;
@@ -43,7 +48,7 @@
 	margin: 0;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 50px;
+	line-height: 30px;
 	font-size: 10px;
 	color: white;
 	font-weight: bold;
@@ -69,10 +74,20 @@ body {
   stroke-width: 1.5px;
 }
 
+.metadata {
+	width: 960px;
+	margin-top: 30px;
+}
+
 .citations {
-	margin-top: 50px;
+	float: left;
 }
 
 .citations p {
 	margin: 0;
+}
+
+.author {
+	font-size: 10px;
+	float: right;
 }
